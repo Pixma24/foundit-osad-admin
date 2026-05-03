@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Login</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+    // If the admin checked 'Remember Me' previously, skip the login page and go straight to the dashboard!
+    if (localStorage.getItem("foundit_admin_logged_in") === "true" || sessionStorage.getItem("foundit_admin_logged_in") === "true") {
+        window.location.href = "admin-dashboard.html";
+    }
+</script>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <img src="university-logo.png" alt="University Logo" class="school-logo">
+        
+        <h1 class="system-title">FoundIT: Lost and Found System</h1>
+        <p class="subtitle">Login to your account</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>EMAIL</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>PASSWORD</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" required>
+                    <i class="fa-solid fa-eye-slash toggle-password" onclick="toggleAnyPassword('password', this)"></i>
+                </div>
+            </div>
+
+            <div class="actions-row">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+                <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+            </div>
+
+            <button type="button" class="btn-solid-yellow" onclick="attemptLogin()">LOG IN</button>
+            
+            <p id="errorMsg" style="color: #ef4444; display: none; text-align: center; margin-top: 15px; font-size: 14px; font-weight: bold;">Incorrect email or password!</p>
+
+            <div class="form-divider">
+                <p>Don't have an account yet?</p>
+                <button type="button" class="btn-outline-yellow" onclick="window.location.href='create-account.html'">Create an Account</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        -This is a product of students from Pampanga State University-
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

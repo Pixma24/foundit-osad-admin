@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Admin Registration</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="admin-login.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Login</a>
+
+    <div class="login-wrapper" style="margin-top: 0; padding-top: 20px;">
+        <img src="university-logo.png" alt="University Logo" class="school-logo" style="width: 80px; margin-bottom: 10px;">
+        
+        <h1 class="system-title">OSAD Staff Registration</h1>
+        <p class="subtitle">Create your system admin account</p>
+
+        <form style="max-width: 400px;">
+            <div class="input-group" style="margin-bottom: 15px;">
+                <label>FULL NAME</label>
+                <div class="input-box">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="regName" required> </div>
+            </div>
+
+            <div class="input-group">
+                <label>EMAIL</label>
+                <div class="input-box" id="regEmailBox">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="regEmail" onkeyup="checkEmailExists()" required>
+                </div>
+                <span id="emailErrorMsg" style="color: #ef4444; font-size: 12px; display: none; margin-top: 5px; font-weight: bold;">This email is already registered!</span>
+                <span id="emailSuccessMsg" style="color: #10b981; font-size: 12px; display: none; margin-top: 5px; font-weight: bold;">Email is available!</span>
+            </div>
+
+            <div class="input-group">
+                <label>PASSWORD</label>
+                <p style="font-size: 11px; color: #f1c40f; margin-bottom: 5px;">Must contain letters, numbers, and special symbols (@, $, !).</p>
+                <div class="input-box" id="regPassBox">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="regPassword" onkeyup="checkPasswordStrength()" required>
+                    <i class="fa-solid fa-eye-slash toggle-password" onclick="toggleAnyPassword('regPassword', this)"></i>
+                </div>
+                <span id="passwordStrengthMsg" style="font-size: 12px; display: none; margin-top: 5px; font-weight: bold;"></span>
+            </div>
+
+            <div class="input-group">
+                <label>CONFIRM PASSWORD</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="confirmPassword" required>
+                    <i class="fa-solid fa-eye-slash toggle-password" onclick="toggleAnyPassword('confirmPassword', this)"></i>
+                </div>
+            </div>
+
+            <button type="button" class="btn-yellow" style="width: 100%; padding: 12px;" onclick="registerAccount()">Register Account</button>
+            <div class="create-account" style="margin-top: 20px;">
+                <p style="margin-bottom: 5px;">Already have an admin account?</p>
+                <a href="admin-login.html" style="color: #f1c40f; text-decoration: none; font-size: 14px; font-weight: bold;">Log In Here</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="registrationSuccessModal" class="modal-overlay">
+        <div class="modal-box" style="text-align: center; padding: 30px;">
+            <div style="font-size: 50px; color: #10b981; margin-bottom: 15px;">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2 style="margin-bottom: 10px;">Registration Successful!</h2>
+            <p style="color: #666; margin-bottom: 25px;">Your admin account has been created. You can now log in to the system.</p>
+
+            <button onclick="window.location.href='admin-login.html'" style="background: #f1c40f; color: white; border: none; padding: 12px 30px; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+                Go to Login
+            </button>
+        </div>
+    </div>
+
+    <div class="footer">
+        -This is a product of students from Pampanga State University-
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

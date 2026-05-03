@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | OSAD Dashboard</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="xlsx.full.min.js"></script>
+    <script src="chart.js"></script>
+    
+    <script>
+    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+    </script>
+</head>
+<body class="dashboard-body">
+
+    <div class="admin-layout">
+        
+        <div class="main-panel">
+            
+            <div class="dash-top-header">
+                <button class="btn-logout-dark" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                <h2 class="dash-main-title">FoundIT Admin Dashboard</h2>
+                <button class="btn-export-green" onclick="executeQuickExport()">Export XLSX</button>
+            </div>
+
+            <div class="cards-row-3">
+                <a href="lost-reports.html" class="dash-card-new">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Active Lost Report</span>
+                </a>
+                <a href="found-inventory.html" class="dash-card-new">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Active Found Report</span>
+                </a>
+                <a href="automated-matches.html" class="dash-card-new">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Automated Matches</span>
+                </a>
+                <a href="claiming-items.html" class="dash-card-new">
+                    <i class="fa-solid fa-hand-holding-hand"></i>
+                    <span>Claiming of Items</span>
+                </a>
+                <a href="claimed-items.html" class="dash-card-new">
+                    <i class="fa-solid fa-handshake"></i>
+                    <span>Claimed Items</span>
+                </a>
+                <a href="archived-items.html" class="dash-card-new">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span>Archived Items</span>
+                </a>
+            </div>
+
+            <div class="system-overview-bar">
+                <div class="overview-header">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-circle-notch" style="color: #f1c40f;"></i>
+                        <h3 style="color: #f1c40f; margin: 0;">System Overview</h3>
+                    </div>
+                    <select id="statFilter" onchange="initDashboardChartAndStats()" class="overview-dropdown">
+                        <option value="all">All Time</option>
+                        <option value="month">This Month</option>
+                        <option value="week">This Week</option>
+                        <option value="today">Today</option>
+                    </select>
+                </div>
+                <div class="overview-stats">
+                    <div class="stat-box">
+                        <span id="statLost" class="stat-num lost-color">0</span>
+                        <span class="stat-label">LOST REPORTED</span>
+                    </div>
+                    <div class="stat-box">
+                        <span id="statFound" class="stat-num found-color">0</span>
+                        <span class="stat-label">ITEMS FOUND</span>
+                    </div>
+                    <div class="stat-box">
+                        <span id="statClaimed" class="stat-num claimed-color">0</span>
+                        <span class="stat-label">ITEMS CLAIMED</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 style="text-align:center; color: black; margin-bottom: 15px; font-size: 20px;">FoundIT Statistics Chart</h3>
+                <div style="position: relative; height: 250px; width: 100%;">
+                    <canvas id="founditChart"></canvas>
+                </div>
+            </div>
+
+            <div class="dash-footer">
+                -This is a product of students from Pampanga State University-
+            </div>
+        </div>
+
+        <div class="side-panel">
+            <img src="university-logo.png" alt="PSU Logo" class="side-logo">
+            <h1 class="side-title">FoundIT</h1>
+            <p class="side-subtitle">Lost and Found System</p>
+            
+            <div id="liveClock" class="side-clock">00:00 AM</div>
+
+            <div class="calendar-widget">
+                <h3 id="calMonthYear">April 2026</h3>
+                <table class="cal-table">
+                    <thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
+                    <tbody id="calBody"></tbody>
+                </table>
+            </div>
+
+            <div class="sidebar-tables">
+                <table class="side-table lost-table">
+                    <thead>
+                        <tr><th>Lost Entries</th><th class="right-align">Days left before archived</th></tr>
+                    </thead>
+                    <tbody id="sideTableLost"></tbody>
+                </table>
+
+                <table class="side-table found-table">
+                    <thead>
+                        <tr><th>Found Entries</th><th class="right-align">Days left before archived</th></tr>
+                    </thead>
+                    <tbody id="sideTableFound"></tbody>
+                </table>
+
+                <table class="side-table claimed-table">
+                    <thead>
+                        <tr><th colspan="2">Items Claimed</th></tr>
+                    </thead>
+                    <tbody id="sideTableClaimed"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

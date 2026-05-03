@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Automated Matches</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+    </script>
+</head>
+<body>
+
+    <a href="admin-dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="dash-header" style="margin-top: 40px; margin-bottom: 10px;">
+        <img src="university-logo.png" alt="University Logo" class="dash-logo" style="width: 50px;">
+        <div class="dash-titles">
+            <h2>FoundIT Admin</h2>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2><i class="fa-solid fa-envelope-circle-check"></i> Automated Matches</h2>
+            <input type="text" placeholder="Search by Match ID..." style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Match ID</th>
+                    <th>Lost Item Ref</th>
+                    <th>Found Item Ref</th>
+                    <th>Match Confidence</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="matchTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        -This is a product of students from Pampanga State University-
+    </div>
+
+    <div id="dynamicSplitModal" class="modal-overlay">
+        <div class="modal-box split-modal">
+            <span class="close-btn" onclick="closeModal('dynamicSplitModal')"><i class="fa-solid fa-xmark"></i></span>
+            
+            <div class="modal-header">
+                <h3 id="splitModalTitle">Review Match: MAT-XXXX</h3>
+            </div>
+            
+            <div class="split-screen">
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-magnifying-glass"></i> Lost Item Report</h4>
+                    <div id="lostItemDetails" style="font-size: 14px;">
+                        Loading...
+                    </div>
+                </div>
+
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-box-open"></i> Found Item Inventory</h4>
+                    <div id="foundItemDetails" style="font-size: 14px;">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+
+            <div class="verify-actions" style="text-align: center; margin-top: 20px;">
+                <button class="btn-reject" onclick="rejectMatch()" style="background-color: #ef4444; color: white; padding: 10px 20px; border: none; border-radius: 4px; margin-right: 10px; cursor: pointer;">Reject Match</button>
+                <button class="btn-confirm" onclick="confirmMatch()" style="background-color: #10b981; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="transactionSuccessModal" class="modal-overlay">
+        <div class="modal-box" style="text-align: center; padding: 30px; max-width: 400px;">
+            <div id="transactionIcon" style="font-size: 50px; margin-bottom: 15px;">
+                </div>
+            <h2 id="transactionTitle" style="margin-bottom: 10px;">Action Successful!</h2>
+            <p id="transactionMessage" style="color: #666; margin-bottom: 25px;">The database has been updated.</p>
+
+            <button onclick="closeTransactionModal()" style="background: #8c1515; color: white; border: none; padding: 12px 30px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%;">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

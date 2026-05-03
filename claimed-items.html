@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Claimed Items</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+    </script>
+</head>
+<body>
+
+    <a href="admin-dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="dash-header" style="margin-top: 40px; margin-bottom: 10px;">
+        <img src="university-logo.png" alt="University Logo" class="dash-logo" style="width: 50px;">
+        <div class="dash-titles">
+            <h2>FoundIT Admin</h2>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2><i class="fa-solid fa-handshake"></i> Claimed Items (Transactions)</h2>
+            <input type="text" placeholder="Search by TXN ID..." style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Match ID</th>
+                    <th>Verification Method</th>
+                    <th>Date Claimed</th>
+                    <th>Status</th>
+                    <th>Action</th> </tr>
+            </thead>
+            <tbody id="claimedTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        -This is a product of students from Pampanga State University-
+    </div>
+
+    <div id="transactionDetailsModal" class="modal-overlay">
+        <div class="modal-box split-modal">
+            <span class="close-btn" onclick="closeModal('transactionDetailsModal')"><i class="fa-solid fa-xmark"></i></span>
+            
+            <div class="modal-header">
+                <h3 id="txnModalTitle">Transaction Details: TXN-XXXX</h3>
+                <p style="font-size: 14px; margin-top: 5px; color: #555;">
+                    <strong>Claimed By:</strong> <span id="txnClaimedBy" style="color: #10b981; font-weight: bold;"></span> | 
+                    <strong>Date Claimed:</strong> <span id="txnDate" style="color: #8c1515; font-weight: bold;"></span>
+                </p>
+            </div>
+            
+            <div class="split-screen">
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-magnifying-glass"></i> Lost Item Report</h4>
+                    <div id="txnLostDetails" style="font-size: 14px;">
+                        Loading...
+                    </div>
+                </div>
+
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-box-open"></i> Found Item Inventory</h4>
+                    <div id="txnFoundDetails" style="font-size: 14px;">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

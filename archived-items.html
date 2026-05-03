@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Archived Items</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+    </script>
+</head>
+<body>
+
+    <a href="admin-dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="dash-header" style="margin-top: 40px; margin-bottom: 10px;">
+        <img src="university-logo.png" alt="University Logo" class="dash-logo" style="width: 50px;">
+        <div class="dash-titles">
+            <h2>FoundIT Admin</h2>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2><i class="fa-solid fa-box-archive"></i> Archived Items (> 7 Days)</h2>
+            <input type="text" placeholder="Search by Found ID..." style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Found ID</th>
+                    <th>Category</th>
+                    <th>Color</th>
+                    <th>Date Found</th>
+                    <th>Days in System</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="archivedTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        -This is a product of students from Pampanga State University-
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

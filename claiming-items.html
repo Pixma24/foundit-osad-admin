@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoundIT | Claiming Items</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") { window.location.href = "admin-login.html"; }
+    </script>
+</head>
+<body>
+    <a href="admin-dashboard.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+    <div class="dash-header" style="margin-top: 40px; margin-bottom: 10px;">
+        <img src="university-logo.png" alt="University Logo" class="dash-logo" style="width: 50px;">
+        <div class="dash-titles"><h2>FoundIT Admin</h2></div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-header">
+            <h2><i class="fa-solid fa-hand-holding-hand"></i> Ready For Claiming</h2>
+            <input type="text" id="searchInput" placeholder="Verify Lost ID ticket..." style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;" onkeyup="filterClaimingTable()">
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Match ID</th>
+                    <th>Lost ID (Student Ticket)</th>
+                    <th>Found ID</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="claimingTableBody"></tbody>
+        </table>
+    </div>
+
+    <div id="dynamicSplitModal" class="modal-overlay">
+        <div class="modal-box split-modal">
+            <span class="close-btn" onclick="closeModal('dynamicSplitModal')"><i class="fa-solid fa-xmark"></i></span>
+            
+            <div class="modal-header">
+                <h3 id="splitModalTitle">Review Match Details</h3>
+            </div>
+            
+            <div class="split-screen">
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-magnifying-glass"></i> Lost Item Report</h4>
+                    <div id="lostItemDetails" style="font-size: 14px;">Loading...</div>
+                </div>
+
+                <div class="split-half">
+                    <h4><i class="fa-solid fa-box-open"></i> Found Item Inventory</h4>
+                    <div id="foundItemDetails" style="font-size: 14px;">Loading...</div>
+                </div>
+            </div>
+
+            <div class="verify-actions" style="text-align: center; margin-top: 20px;">
+                <button class="btn-confirm" onclick="triggerReleaseFromModal()" style="background-color: #10b981; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px;">
+                    <i class="fa-solid fa-check"></i> Release Item to Owner
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="releaseConfirmModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box" style="text-align: center; padding: 30px; max-width: 400px;">
+        <div style="font-size: 50px; color: #10b981; margin-bottom: 15px;">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2 style="margin-bottom: 10px;">Confirm Release</h2>
+        <p style="color: #666; margin-bottom: 25px;">Are you sure you want to release this item to the student and log the transaction?</p>
+
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="closeModal('releaseConfirmModal')" style="background: #ccc; color: black; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; flex: 1; font-size: 15px;">Cancel</button>
+                <button onclick="executeRelease()" style="background: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; flex: 1; font-size: 15px;">Yes, Release</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
