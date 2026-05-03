@@ -1076,6 +1076,22 @@ textarea {
 .claimed-table th { color: #10b981; border-color: #10b981; }
 
 /* ==========================================
+   🖥️ GLOBAL BASE CONTAINERS (All Screens)
+   ========================================== */
+/* Ensures main containers don't stretch infinitely on huge desktop monitors */
+.container, .form-container, .main-wrapper {
+    width: 95%;
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+
+/* Make sure all images respect their container sizes */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================
    📱 RESPONSIVE DESIGN (MOBILE & TABLET)
    ========================================== */
 
@@ -1142,6 +1158,7 @@ textarea {
     .dash-header {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
     }
     
     .dash-logo {
@@ -1158,7 +1175,7 @@ textarea {
         margin-bottom: 15px;
     }
     
-    /* NEW: Ensure the 5th button takes full width on small screens */
+    /* Ensure the 5th button takes full width on small screens */
     .dash-card:last-child {
         width: 100% !important;
     }
