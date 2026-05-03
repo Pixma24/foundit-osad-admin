@@ -1189,3 +1189,23 @@ textarea {
     position: absolute; top: 20px; right: 40px; font-size: 50px; color: white; cursor: pointer;
 }
 .fs-close:hover { color: #ef4444; }
+
+
+.validation-text {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: block;
+    font-weight: bold;
+}
+
+.text-success {
+    color: #4CAF50; /* Adjust to match your exact green */
+}
+
+.text-error {
+    color: #f44336; /* Red for mismatch */
+}
+
+/* Optional: Outline classes to change the input box border color */
+.border-success { border: 1px solid #4CAF50 !important; }
+.border-error { border: 1px solid #f44336 !important; }
