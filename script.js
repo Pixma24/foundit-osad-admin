@@ -1,7 +1,7 @@
 // ==========================================
 // ENVIRONMENT SETUP
 // ==========================================
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://foundit-backend-qgsb.onrender.com";
 
 function parseSpringDate(date) {
     if (!date || date === "N/A" || date === "null") {
