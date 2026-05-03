@@ -1739,3 +1739,41 @@ function removeFile(index) {
     currentSelectedFiles.splice(index, 1); // Remove from array
     renderFilePreview(); // Re-draw the UI
 }
+
+// Grab the elements by their IDs (update these if your HTML IDs are different)
+const passwordInput = document.getElementById('password'); 
+const confirmPasswordInput = document.getElementById('confirmPassword');
+const matchMessage = document.getElementById('matchMessage');
+
+function validatePasswordMatch() {
+    const pass = passwordInput.value;
+    const confirmPass = confirmPasswordInput.value;
+
+    // Don't show an error if they haven't typed anything in the confirm box yet
+    if (confirmPass === '') {
+        matchMessage.textContent = '';
+        confirmPasswordInput.classList.remove('border-success', 'border-error');
+        return;
+    }
+
+    // Check if they match
+    if (pass === confirmPass) {
+        matchMessage.textContent = 'Passwords match!';
+        matchMessage.className = 'validation-text text-success';
+        
+        // Optional: Make the input border green
+        confirmPasswordInput.classList.remove('border-error');
+        confirmPasswordInput.classList.add('border-success');
+    } else {
+        matchMessage.textContent = 'Passwords do not match.';
+        matchMessage.className = 'validation-text text-error';
+        
+        // Optional: Make the input border red
+        confirmPasswordInput.classList.remove('border-success');
+        confirmPasswordInput.classList.add('border-error');
+    }
+}
+
+// Run the check whenever the user types in EITHER box
+passwordInput.addEventListener('input', validatePasswordMatch);
+confirmPasswordInput.addEventListener('input', validatePasswordMatch);
