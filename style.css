@@ -22,7 +22,7 @@
 }
 
 body {
-    /* This applies the maroon tint AND your gate photo */
+    /* This applies the maroon tint AND your gate photo from the same folder */
     background: linear-gradient(rgba(140, 21, 21, 0.85), rgba(140, 21, 21, 0.85)), url('university-background.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
@@ -39,7 +39,7 @@ body {
     padding: 40px 35px;
     border-radius: 15px; /* Softer, rounder corners */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); /* Heavy drop shadow for depth */
-    border: none; /* Removed the glass border */
+    border: none; 
 }
 
 /* Wrapper for the login logo and text */
@@ -57,7 +57,7 @@ body {
     width: 130px !important;
     height: auto !important;
     margin: 0 auto 15px auto; /* Forces center alignment */
-    display: block; /* Required for margin auto to work on images */
+    display: block; 
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
 }
 
@@ -70,15 +70,15 @@ body {
 }
 
 .login-wrapper .input-box {
-    border-radius: 8px; /* Rounded inputs */
-    background: rgba(255, 255, 255, 0.05); /* Slight grey fill */
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Faint border */
+    border-radius: 8px; 
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.15); 
     padding: 12px 15px;
     transition: 0.3s;
 }
 
 .login-wrapper .input-box:focus-within {
-    border-color: #f1c40f; /* Yellow focus ring */
+    border-color: #f1c40f; 
     background: rgba(255, 255, 255, 0.1);
 }
 
@@ -123,7 +123,7 @@ body {
     width: 100%;
     padding: 14px;
     background-color: #f1c40f;
-    color: black; /* Black text on yellow background */
+    color: black; 
     font-weight: bold;
     font-size: 16px;
     border-radius: 8px;
@@ -140,7 +140,7 @@ body {
 .form-divider {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Faint divider line */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); 
     text-align: center;
 }
 
@@ -179,14 +179,14 @@ body {
 .subtitle {
     font-size: 14px;
     margin-bottom: 30px;
-    text-align: center; /* Centers the text */
+    text-align: center; 
     width: 100%;
 }
 
 form {
     width: 100%;
     max-width: 400px;
-    background-color: rgba(0, 0, 0, 0.35); /* This creates the dark transparent box! */
+    background-color: rgba(0, 0, 0, 0.35); 
     padding: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -230,27 +230,8 @@ form {
     cursor: pointer;
 }
 
-.actions-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.remember-me input {
-    margin-right: 8px;
-    width: 16px;
-    height: 16px;
-}
-
 .btn-yellow {
-    background-color: #f1c40f; /* The exact gold/yellow from your PDF */
+    background-color: #f1c40f; 
     color: white;
     border: none;
     padding: 8px 20px;
@@ -274,12 +255,6 @@ form {
     color: #f1c40f;
 }
 
-.dotted-line {
-    border: none;
-    border-top: 2px dotted white;
-    margin: 20px 0;
-}
-
 .create-account {
     text-align: center;
 }
@@ -291,253 +266,14 @@ form {
 
 .footer {
     position: relative; 
-    margin-top: auto; /* This magically pushes the footer to the very bottom! */
+    margin-top: auto; 
     padding: 30px 0 20px 0;
     font-size: 12px;
     text-align: center;
     width: 100%;
 }
 
-/* --- SELECTION SCREEN STYLES --- */
-
-.top-header {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.header-logo {
-    width: 60px; /* Smaller logo for the header */
-    height: auto;
-    margin-right: 15px;
-}
-
-.header-titles h2 {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-}
-
-.header-titles p {
-    font-size: 12px;
-    margin: 0;
-    letter-spacing: 0.5px;
-}
-
-.selection-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Centers it perfectly on the screen */
-    text-align: center;
-    width: 100%;
-}
-
-.offer-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.offer-subtitle {
-    font-size: 14px;
-    margin-bottom: 40px;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: row; /* Forces them side-by-side */
-    justify-content: center;
-    gap: 20px; 
-    width: 100%;
-    max-width: 600px; /* INCREASED from 300px to allow wide rectangles! */
-    margin: 0 auto;
-}
-
-.btn-selection {
-    flex: 1; /* Makes both buttons equal width */
-    background-color: #f1c40f;
-    color: white;
-    text-decoration: none; 
-    padding: 15px 20px;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 8px; 
-    border: 2px solid white; 
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Space between the icon and text */
-    white-space: nowrap; /* THIS IS THE MAGIC FIX: Prevents text from wrapping into a square */
-}
-
-.btn-selection:hover {
-    background-color: transparent;
-    color: #f1c40f;
-    border: 2px solid #f1c40f;
-}
-
-/* The Logout / Back Button (Top Left) */
-.back-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5); /* Adds a dark box behind it */
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 18px; /* Made bigger! */
-    font-weight: bold;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.back-btn i {
-    margin-right: 8px;
-}
-
-.back-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #f1c40f;
-    border-color: #f1c40f;
-}
-
-/* The Export XLSX Button (Top Right) */
-.export-btn-top {
-    position: absolute;
-    top: 20px;
-    right: 20px; /* Locks it to the right side of the screen */
-    background-color: #10b981; /* Nice Emerald Green */
-    color: white;
-    border: none;
-    padding: 12px 25px; /* Makes it a large, clickable rectangle */
-    font-size: 18px; /* Made bigger! */
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.export-btn-top:hover {
-    background-color: #0e9f6e;
-    transform: translateY(-2px);
-}
-
-select, textarea, input[type="date"], input[type="file"] {
-    background: transparent;
-    border: none;
-    color: white;
-    width: 100%;
-    font-size: 16px;
-    outline: none;
-    padding-left: 5px;
-}
-
-/* Makes dropdown options readable against the maroon background */
-select option {
-    background-color: #8c1515; 
-    color: white;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 60px;
-    padding-top: 5px;
-}
-
-.form-hint {
-    display: block;
-    font-size: 10px;
-    color: #cccccc;
-    margin-top: -15px;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-/* --- WHITE FORM THEME (For Student Report Pages) --- */
-.white-form {
-    background-color: white !important;
-    color: black !important;
-}
-
-.white-form .system-title {
-    color: black;
-    text-align: left;
-}
-
-.white-form .input-group label {
-    color: black;
-    font-weight: 600;
-}
-
-/* Make the input boxes white with a black border */
-.white-form .input-box {
-    background-color: white !important;
-    border: 1px solid black !important;
-}
-
-/* Make the actual text inside the fields black */
-.white-form .input-box input,
-.white-form .input-box select,
-.white-form input[type="date"],
-.white-form input[type="file"] {
-    background-color: white !important;
-    color: black !important;
-    border: none;
-}
-
-/* Specific styling for the textarea */
-.white-form textarea {
-    background-color: white !important;
-    color: black !important;
-    border: 1px solid black !important;
-    width: 100%;
-    outline: none;
-    padding: 5px;
-}
-
-.white-form select option {
-    background-color: white;
-    color: black;
-}
-
-/* The Red Back Button */
-.back-btn-red {
-    display: block;
-    border: 1px solid #8c1515;
-    color: #8c1515;
-    text-align: center;
-    padding: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* The Blue Submit Button */
-.btn-blue {
-    background-color: #00a8ff;
-    color: black;
-    border: 1px solid black;
-    padding: 12px;
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* --- OSAD DASHBOARD STYLES --- */
-
+/* --- DASHBOARD & LAYOUT STYLES --- */
 .dashboard-wrapper {
     width: 100%;
     max-width: 800px;
@@ -550,8 +286,8 @@ textarea {
 
 .dash-header {
     display: flex;
-    flex-direction: column; /* Stacks logo and text top-to-bottom */
-    align-items: center;    /* Centers everything horizontally */
+    flex-direction: column; 
+    align-items: center;    
     justify-content: center;
     text-align: center;
     margin-bottom: 30px;
@@ -560,8 +296,7 @@ textarea {
 .dash-logo {
     width: 80px;
     height: auto;
-    margin-right: 0;       /* Removed the old right margin */
-    margin-bottom: 15px;   /* Added a bottom margin instead */
+    margin-bottom: 15px;   
 }
 
 .dash-titles h2 {
@@ -577,7 +312,6 @@ textarea {
     color: white;
 }
 
-/* The 2x2 Grid for the Folders */
 .dash-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -587,9 +321,9 @@ textarea {
 }
 
 .dash-card:last-child {
-    grid-column: 1 / -1; /* Forces it to span both columns */
-    justify-self: center; /* Centers it horizontally */
-    width: calc(50% - 10px); /* Keeps it the exact same size as the other buttons */
+    grid-column: 1 / -1; 
+    justify-self: center; 
+    width: calc(50% - 10px); 
 }
 
 .dash-card {
@@ -611,7 +345,7 @@ textarea {
 
 .dash-card i {
     font-size: 40px;
-    color: #f1c40f; /* Gold accent for the icons */
+    color: #f1c40f; 
 }
 
 .dash-card:hover {
@@ -619,69 +353,7 @@ textarea {
     background-color: white;
 }
 
-/* Calendar Styles */
-.calendar-container {
-    padding: 10px;
-    overflow-x: auto; /* Allows swiping if it gets too tight */
-}
-
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    color: #8c1515;
-}
-
-.calendar-header h3 {
-    margin: 0;
-    font-size: 20px;
-}
-
-.calendar-header i {
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.calendar-table th {
-    font-size: 10px !important; /* Shrinks the day names */
-    padding: 5px 2px !important;
-    word-break: break-all; /* Prevents long words from overlapping */
-}
-
-.calendar-table th {
-    font-size: 14px;
-    font-weight: bold;
-    color: #8c1515;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #8c1515;
-}
-
-.calendar-table td {
-    padding: 8px 2px !important;
-    font-size: 12px !important;
-}
-
-.calendar-table td:hover:not(.empty) {
-    background-color: #f1c40f;
-    color: white;
-    font-weight: bold;
-}
-
-.calendar-table .empty {
-    background-color: #f9f9f9;
-    border: none;
-    cursor: default;
-}
-
-/* Highlights the current day */
-.today-highlight {
-    background-color: #f1c40f !important;
-    color: white !important;
-    font-weight: bold;
-}
-
-/* --- DATA TABLE STYLES (For Admin Sub-pages) --- */
+/* --- DATA TABLE STYLES --- */
 .table-container {
     background-color: white;
     width: 95%;
@@ -691,7 +363,7 @@ textarea {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     color: black;
-    overflow-x: auto; /* Adds a scrollbar on small screens */
+    overflow-x: auto; 
 }
 
 .table-header {
@@ -729,19 +401,6 @@ textarea {
     background-color: #f9f9f9;
 }
 
-/* Status Badges */
-.status-badge {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.status-active {
-    background-color: #e3f2fd;
-    color: #1976d2;
-}
-
 /* Small action buttons inside the table */
 .btn-action {
     background-color: #f1c40f;
@@ -761,14 +420,14 @@ textarea {
 
 /* --- MODAL (POP-UP) STYLES --- */
 .modal-overlay {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
     top: 0; 
     left: 0; 
     width: 100%; 
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
-    z-index: 1000; /* Ensures it sits on top of everything else */
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1000; 
     justify-content: center;
     align-items: center;
 }
@@ -808,19 +467,9 @@ textarea {
     color: #8c1515;
 }
 
-/* Styles for the data inside the modal */
-.modal-data p {
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-.modal-data strong {
-    color: #333;
-}
-
 /* --- SPLIT-SCREEN VERIFY MODAL --- */
 .modal-box.split-modal {
-    max-width: 800px; /* Needs to be wider to fit two columns! */
+    max-width: 800px; 
 }
 
 .split-screen {
@@ -853,33 +502,10 @@ textarea {
     padding-top: 15px;
 }
 
-.btn-confirm {
-    background-color: #2e7d32;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-reject {
-    background-color: #c62828;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.btn-confirm:hover { background-color: #1b5e20; }
-.btn-reject:hover { background-color: #b71c1c; }
-
 /* --- AUTOMATED MATCHES: REVIEW BUTTON --- */
 .btn-outline {
     background-color: transparent;
-    color: #8c1515; /* University Maroon */
+    color: #8c1515; 
     border: 2px solid #8c1515;
     padding: 8px 15px;
     border-radius: 5px;
@@ -897,6 +523,59 @@ textarea {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(140, 21, 21, 0.2);
+}
+
+/* --- EXPORT BUTTON --- */
+.export-btn-top {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    background-color: #10b981; 
+    color: white;
+    border: none;
+    padding: 12px 25px; 
+    font-size: 18px; 
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.export-btn-top:hover {
+    background-color: #0e9f6e;
+    transform: translateY(-2px);
+}
+
+/* The Logout / Back Button (Top Left) */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Adds a dark box behind it */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px; /* Made bigger! */
+    font-weight: bold;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn i {
+    margin-right: 8px;
+}
+
+.back-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #f1c40f;
+    border-color: #f1c40f;
 }
 
 /* --- NEW UI DASHBOARD LAYOUT --- */
@@ -1031,13 +710,6 @@ textarea {
     flex-direction: column;
 }
 
-.dash-footer {
-    text-align: center;
-    font-size: 12px;
-    margin-top: 10px;
-    color: #eee;
-}
-
 /* RIGHT SIDEBAR */
 .side-panel {
     flex: 1.1;
@@ -1075,113 +747,7 @@ textarea {
 .found-table th { color: #0284c7; border-color: #0284c7; }
 .claimed-table th { color: #10b981; border-color: #10b981; }
 
-/* ==========================================
-   🖥️ GLOBAL BASE CONTAINERS (All Screens)
-   ========================================== */
-/* Ensures main containers don't stretch infinitely on huge desktop monitors */
-.container, .form-container, .main-wrapper {
-    width: 95%;
-    max-width: 1400px; 
-    margin: 0 auto;
-}
-
-/* Make sure all images respect their container sizes */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* ==========================================
-   📱 RESPONSIVE DESIGN (MOBILE & TABLET)
-   ========================================== */
-
-/* --- TABLETS & SMALL LAPTOPS (Max Width: 992px) --- */
-@media screen and (max-width: 992px) {
-    .dash-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on tablets */
-    }
-}
-
-/* --- MOBILE PHONES (Max Width: 768px) --- */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Stack the Dashboard Cards */
-    .dash-grid {
-        grid-template-columns: 1fr !important; /* 1 column on phones */
-        gap: 15px;
-    }
-
-    /* 2. Fix the Forms (Stack side-by-side inputs vertically) */
-    .white-form div[style*="display: flex"] {
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-    .input-group {
-        width: 100% !important;
-    }
-
-    /* 3. Make Data Tables Scrollable */
-    .table-container {
-        width: 95%;
-        overflow-x: auto; /* Adds a horizontal scrollbar ONLY to the table if it's too wide */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-    
-    .data-table {
-        min-width: 600px; /* Prevents columns from squishing too much */
-    }
-
-    /* 4. Fix the Modals & Split Screens */
-    .modal-box {
-        width: 90% !important;
-        max-width: none !important;
-        padding: 20px !important;
-    }
-
-    /* Stack the "Review Match" left and right sides vertically */
-    .split-modal-content, 
-    div[style*="display: flex"][style*="gap: 20px"] {
-        flex-direction: column !important;
-    }
-    
-    .split-half {
-        width: 100% !important;
-        margin-bottom: 10px;
-    }
-
-    /* 5. Adjust Header Sizes */
-    .system-title {
-        font-size: 24px !important;
-        text-align: center;
-    }
-    
-    .dash-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .dash-logo {
-        margin-bottom: 10px;
-    }
-
-    /* 6. Selection Page Buttons */
-    .button-container {
-        flex-direction: column;
-        width: 90%;
-    }
-    .btn-selection {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-    
-    /* Ensure the 5th button takes full width on small screens */
-    .dash-card:last-child {
-        width: 100% !important;
-    }
-}
-
-/* --- GLOBAL LOADING SCREEN --- */
+/* --- LOADING & OVERLAYS --- */
 .global-loader {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.85); z-index: 10000;
@@ -1193,36 +759,20 @@ img {
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* --- FULLSCREEN IMAGE VIEWER --- */
-.fs-image-viewer {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); z-index: 10001;
-    justify-content: center; align-items: center;
-}
-.fs-image-viewer img {
-    max-width: 90%; max-height: 90%; border: 3px solid white; border-radius: 10px;
-}
-.fs-close {
-    position: absolute; top: 20px; right: 40px; font-size: 50px; color: white; cursor: pointer;
-}
-.fs-close:hover { color: #ef4444; }
-
-
 .validation-text {
     font-size: 0.8rem;
     margin-top: 4px;
     display: block;
     font-weight: bold;
 }
-
-.text-success {
-    color: #4CAF50; /* Adjust to match your exact green */
-}
-
-.text-error {
-    color: #f44336; /* Red for mismatch */
-}
-
-/* Optional: Outline classes to change the input box border color */
+.text-success { color: #4CAF50; }
+.text-error { color: #f44336; }
 .border-success { border: 1px solid #4CAF50 !important; }
 .border-error { border: 1px solid #f44336 !important; }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .dash-grid { grid-template-columns: 1fr !important; gap: 15px; }
+    .table-container { width: 95%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .split-screen { flex-direction: column !important; }
+}
