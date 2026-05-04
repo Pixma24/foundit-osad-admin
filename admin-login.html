@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script>
-    // If the admin checked 'Remember Me' previously, skip the login page and go straight to the dashboard!
-    if (localStorage.getItem("foundit_admin_logged_in") === "true" || sessionStorage.getItem("foundit_admin_logged_in") === "true") {
+    // If the admin has a valid token, skip login and go to dashboard
+    const token = localStorage.getItem("foundit_admin_token") || sessionStorage.getItem("foundit_admin_token");
+    if (token) {
         window.location.href = "admin-dashboard.html";
     }
 </script>

@@ -262,7 +262,7 @@ function attemptLogin() {
     const passInput = document.getElementById("password").value;
     const rememberMe = document.getElementById("remember") ? document.getElementById("remember").checked : false;
 
-    // Send data securely in the body as JSON, not in the URL
+    // Send credentials securely in the body, NOT the URL
     fetch(`${API_BASE}/api/items/admin/login`, {
         method: 'POST', 
         headers: { 
@@ -270,19 +270,16 @@ function attemptLogin() {
         },
         body: JSON.stringify({ username: emailInput, password: passInput })
     })
-    // Note: If you update your backend to return a JWT, change .text() to .json()
     .then(res => res.text()) 
     .then(result => {
         if (result.startsWith("Success")) {
-            // Ideally, your backend should return a secure JWT (JSON Web Token) here.
-            // For now, we will store a simulated token/session identifier instead of a raw "true".
             let adminName = result.replace("Success", "").replace(",", "").replace("|", "").trim() || "Admin";
             
             const storage = rememberMe ? localStorage : sessionStorage;
             
-            // Storing a token (even a basic one for now) is better than a "true" boolean
-            // When you implement JWT on the backend, store the actual JWT string here.
-            storage.setItem("foundit_admin_token", "active_session_token_replace_with_jwt"); 
+            // Store a token identifier instead of a true/false boolean.
+            // When you upgrade the backend to generate real JWTs, save that string here.
+            storage.setItem("foundit_admin_token", "active_session_token"); 
             storage.setItem("foundit_admin_name", adminName); 
             
             window.location.href = "admin-dashboard.html"; 
@@ -297,7 +294,7 @@ function attemptLogin() {
 }
 
 function logoutAdmin() {
-    // Clear the tokens instead of the old boolean flags
+    // Clear the new token keys
     localStorage.removeItem("foundit_admin_token"); 
     localStorage.removeItem("foundit_admin_name"); 
     sessionStorage.removeItem("foundit_admin_token"); 
