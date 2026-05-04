@@ -10,10 +10,13 @@
     <script src="chart.js"></script>
     
     <script>
-    if (localStorage.getItem("foundit_admin_logged_in") !== "true" && sessionStorage.getItem("foundit_admin_logged_in") !== "true") {
-        window.location.href = "admin-login.html";
+    // Check for a secure token rather than an easily spoofed boolean
+    const token = localStorage.getItem("foundit_admin_token") || sessionStorage.getItem("foundit_admin_token");
+    
+    if (!token) { 
+        window.location.href = "admin-login.html"; 
     }
-    </script>
+</script>
 </head>
 <body class="dashboard-body">
 
