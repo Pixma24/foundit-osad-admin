@@ -846,20 +846,42 @@ function viewTransactionDetails(matchId, txnId, claimedBy, dateClaimed) {
 function confirmMatch() {
     showLoading("Sending Emails...");
     fetch(`${API_BASE}/api/items/matches/${currentMatchId}/confirm`, {
-        method: "POST", headers: { "ngrok-skip-browser-warning": "69420" }
-    }).then(response => response.text()).then(message => {
+        method: "POST" // Removed unnecessary ngrok header
+    })
+    .then(response => response.text())
+    .then(message => {
         hideLoading();
         if (message === "Success") {
             closeModal('dynamicSplitModal');
-            document.getElementById("transactionIcon").innerHTML = '<i class="fa-solid fa-circle-check" style="color: #10b981;"></i>';
-            document.getElementById("transactionTitle").innerText = "Match Confirmed!";
-            document.getElementById("transactionMessage").innerText = "Items have been marked as Ready to Claim and emails have been sent.";
-            openModal('transactionSuccessModal');
-        } else alert("Error confirming match.");
+            // Use your dynamic success alert instead of a hardcoded HTML modal
+            showCustomAlert("Match Confirmed! Items are marked 'Ready to Claim' and emails have been sent.", "success");
+            loadMatches(); // Refresh the table
+        } else {
+            showCustomAlert("Error confirming match.", "error");
+        }
+    })
+    .catch(err => {
+        hideLoading();
+        showCustomAlert("Network error while confirming match.", "error");
     });
 }
 
-function rejectMatch() { fetch(`${API_BASE}/api/items/matches/${currentMatchId}/reject`, { method: "POST", headers: { "ngrok-skip-browser-warning": "69420" }}).then(() => { closeModal('dynamicSplitModal'); showCustomAlert("Match Rejected."); loadMatches(); }); }
+function rejectMatch() { 
+    showLoading("Rejecting Match...");
+    fetch(`${API_BASE}/api/items/matches/${currentMatchId}/reject`, { 
+        method: "POST" 
+    })
+    .then(() => { 
+        hideLoading();
+        closeModal('dynamicSplitModal'); 
+        showCustomAlert("Match Rejected successfully.", "success"); 
+        loadMatches(); 
+    })
+    .catch(err => {
+        hideLoading();
+        showCustomAlert("Network error while rejecting match.", "error");
+    });
+}
 
 function triggerReleaseFromModal() {
     if (currentMatchId) {
@@ -880,7 +902,7 @@ function executeRelease() {
     showLoading("Logging Transaction...");
     
     fetch(`${API_BASE}/api/items/matches/${matchIdToRelease}/release`, { 
-        method: "POST", headers: { "ngrok-skip-browser-warning": "69420" } 
+        method: "POST"
     })
     .then(res => res.text())
     .then(msg => {
@@ -888,7 +910,7 @@ function executeRelease() {
         if (msg === "Success") {
             showCustomAlert("Item successfully released and logged to Claimed Items!", "success");
             if (document.getElementById("claimingTableBody")) {
-                loadClaimingItems();
+                loadClaimingItems(); // Refresh the table
             }
         } else {
             showCustomAlert("Error releasing item: " + msg);
@@ -899,13 +921,6 @@ function executeRelease() {
         console.error("Release Item Error:", err);
         showCustomAlert("Network error. Please check your connection.");
     });
-}
-
-function closeTransactionModal() {
-    closeModal('transactionSuccessModal');
-    if (typeof loadMatches === "function") {
-        loadMatches();
-    }
 }
 
 // ==========================================
