@@ -776,3 +776,76 @@ form {
     .table-container { width: 95%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .split-screen { flex-direction: column !important; }
 }
+
+/* ==========================================
+   ADMIN MOBILE RESPONSIVE FIXES
+   ========================================== */
+@media (max-width: 768px) {
+    /* 1. Prevent horizontal scrolling/overflow */
+    body.dashboard-body {
+        overflow-x: hidden;
+        height: auto;
+    }
+
+    /* 2. Force the main layout to stack vertically */
+    .admin-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100%;
+        height: auto !important;
+    }
+
+    /* 3. Make the main content and right sidebar take full width */
+    .main-panel,
+    .side-panel {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        margin: 0 !important; 
+    }
+
+    /* Add spacing and visual separation for the sidebar */
+    .side-panel {
+        padding: 30px 15px !important;
+        border-left: none !important; 
+        border-top: 3px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* 4. Fix the cramped top header */
+    .dash-top-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+        padding: 15px 5px;
+    }
+
+    /* Put the title on its own row at the top of the header */
+    .dash-main-title {
+        font-size: 24px !important;
+        width: 100%;
+        order: -1; /* Forces it to the top */
+        margin-bottom: 5px;
+    }
+
+    /* 5. Make the 6 menu cards stack into a 2-column grid */
+    .cards-row-3 {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* 2 columns on mobile */
+        gap: 12px !important;
+    }
+
+    /* 6. Ensure the system overview stats don't get squished */
+    .overview-stats {
+        display: flex;
+        flex-direction: column; /* Stacks the 3 stat numbers vertically */
+        gap: 15px;
+    }
+
+    /* Make the chart container responsive */
+    .chart-container {
+        padding: 15px !important;
+    }
+}
