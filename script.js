@@ -137,14 +137,13 @@ document.addEventListener("DOMContentLoaded", function() {
         initDashboardChartAndStats();
     }
     
-    // Password validation logic
+    // Updated Password validation logic
     const passwordInput = document.getElementById('password') || document.getElementById('regPassword') || document.getElementById('newPassword'); 
     const confirmPasswordInput = document.getElementById('confirmPassword') || document.getElementById('confirmNewPassword');
     const matchMessage = document.getElementById('matchMessage');
 
     if (passwordInput && confirmPasswordInput && matchMessage) {
-        
-        // 1. Target the outer wrapper box instead of the inner input field!
+        // Target the outer box wrapper
         const confirmPassBox = confirmPasswordInput.closest('.input-box');
 
         const validatePasswordMatch = () => {
@@ -153,15 +152,14 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (confirmPass === '') {
                 matchMessage.textContent = '';
-                // Reset the outer border to white
-                if(confirmPassBox) confirmPassBox.style.borderColor = 'white'; 
+                if(confirmPassBox) confirmPassBox.style.borderColor = 'white';
                 return;
             }
             
             if (pass === confirmPass) {
                 matchMessage.textContent = 'Passwords match!';
                 matchMessage.className = 'validation-text text-success';
-                // 2. Use the EXACT emerald green hex code to match the upper box
+                // Use the exact emerald green hex to match the top box
                 if(confirmPassBox) confirmPassBox.style.borderColor = '#10b981'; 
             } else {
                 matchMessage.textContent = 'Passwords do not match.';
@@ -377,6 +375,11 @@ function verifyOtp() {
             document.getElementById("page2-code").style.display = "none"; 
             document.getElementById("page3-password").style.display = "block"; 
             document.getElementById("resetSubtitle").innerText = "Create New Password";
+
+            // --- ADD THIS LINE ---
+            // This triggers the check immediately in case the browser auto-filled the password!
+            checkResetPasswordLive(); 
+            
         } else {
             showCustomAlert(result);
         }
