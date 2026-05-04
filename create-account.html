@@ -51,9 +51,11 @@
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="confirmPassword" required>
-                    <small id="matchMessage" class="validation-text"></small>
+                    <!-- Moved the message out of here! -->
                     <i class="fa-solid fa-eye-slash toggle-password" onclick="toggleAnyPassword('confirmPassword', this)"></i>
                 </div>
+                <!-- Placed it here, just like the regular password field -->
+                <small id="matchMessage" class="validation-text"></small>
             </div>
 
             <button type="button" class="btn-yellow" style="width: 100%; padding: 12px;" onclick="registerAccount()">Register Account</button>
