@@ -849,3 +849,18 @@ form {
         padding: 15px !important;
     }
 }
+
+/* --- FIX FOR BROWSER AUTOFILL WHITE BACKGROUND --- */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    /* This overrides the white background with your dark color */
+    -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important; 
+    
+    /* This ensures the auto-filled text stays white instead of turning black */
+    -webkit-text-fill-color: #ffffff !important; 
+    
+    /* This ensures your typing cursor remains visible */
+    caret-color: #ffffff !important; 
+}
