@@ -765,10 +765,13 @@ form {
     display: block;
     font-weight: bold;
 }
-.text-success { color: #4CAF50; }
-.text-error { color: #f44336; }
-.border-success { border: 1px solid #4CAF50 !important; }
-.border-error { border: 1px solid #f44336 !important; }
+/* Unified Emerald Green */
+.text-success { color: #10b981 !important; }
+.border-success { border-color: #10b981 !important; }
+
+/* Unified Red */
+.text-error { color: #ef4444 !important; }
+.border-error { border-color: #ef4444 !important; }
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {

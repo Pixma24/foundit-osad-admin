@@ -48,13 +48,11 @@
 
             <div class="input-group">
                 <label>CONFIRM PASSWORD</label>
-                <div class="input-box">
+                <div class="input-box" id="confirmPassBox">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="confirmPassword" required>
-                    <!-- Moved the message out of here! -->
                     <i class="fa-solid fa-eye-slash toggle-password" onclick="toggleAnyPassword('confirmPassword', this)"></i>
                 </div>
-                <!-- Placed it here, just like the regular password field -->
                 <small id="matchMessage" class="validation-text"></small>
             </div>
 

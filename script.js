@@ -143,24 +143,31 @@ document.addEventListener("DOMContentLoaded", function() {
     const matchMessage = document.getElementById('matchMessage');
 
     if (passwordInput && confirmPasswordInput && matchMessage) {
+        
+        // 1. Target the outer wrapper box instead of the inner input field!
+        const confirmPassBox = confirmPasswordInput.closest('.input-box');
+
         const validatePasswordMatch = () => {
             const pass = passwordInput.value;
             const confirmPass = confirmPasswordInput.value;
+            
             if (confirmPass === '') {
                 matchMessage.textContent = '';
-                confirmPasswordInput.classList.remove('border-success', 'border-error');
+                // Reset the outer border to white
+                if(confirmPassBox) confirmPassBox.style.borderColor = 'white'; 
                 return;
             }
+            
             if (pass === confirmPass) {
                 matchMessage.textContent = 'Passwords match!';
                 matchMessage.className = 'validation-text text-success';
-                confirmPasswordInput.classList.remove('border-error');
-                confirmPasswordInput.classList.add('border-success');
+                // 2. Use the EXACT emerald green hex code to match the upper box
+                if(confirmPassBox) confirmPassBox.style.borderColor = '#10b981'; 
             } else {
                 matchMessage.textContent = 'Passwords do not match.';
                 matchMessage.className = 'validation-text text-error';
-                confirmPasswordInput.classList.remove('border-success');
-                confirmPasswordInput.classList.add('border-error');
+                // Apply the red error border
+                if(confirmPassBox) confirmPassBox.style.borderColor = '#ef4444'; 
             }
         };
         passwordInput.addEventListener('input', validatePasswordMatch);
