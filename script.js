@@ -428,6 +428,8 @@ function checkResetPasswordLive() {
             }
         }
     }).catch(err => console.error(err));
+
+    checkConfirmPasswordLive();
 }
 
 function submitFinalPassword() {
@@ -445,6 +447,35 @@ function submitFinalPassword() {
             showCustomAlert(result);
         }
     });
+}
+
+function checkConfirmPasswordLive() {
+    const newPass = document.getElementById("newPassword").value;
+    const confirmPass = document.getElementById("confirmNewPassword").value;
+    const confirmBox = document.getElementById("confirmPassBox"); 
+    const matchMsg = document.getElementById("confirmMatchMsg");
+
+    if (!matchMsg || !confirmBox) return;
+
+    // If the box is empty, reset everything back to white/hidden
+    if (confirmPass.length === 0) {
+        confirmBox.style.borderColor = "white";
+        matchMsg.style.display = "none";
+        return;
+    }
+
+    // Check if they match exactly
+    if (newPass === confirmPass) {
+        confirmBox.style.borderColor = "#10b981"; // Emerald green
+        matchMsg.style.color = "#10b981";
+        matchMsg.innerText = "Passwords match!";
+        matchMsg.style.display = "block";
+    } else {
+        confirmBox.style.borderColor = "#ef4444"; // Error red
+        matchMsg.style.color = "#ef4444";
+        matchMsg.innerText = "Passwords do not match.";
+        matchMsg.style.display = "block";
+    }
 }
 
 // ==========================================
