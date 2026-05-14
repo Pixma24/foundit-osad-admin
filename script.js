@@ -744,6 +744,7 @@ function viewDetails(itemId) {
                     ${generateCarouselHTML(photoPath, itemId)}
                     <p><strong>Student:</strong> ${item.studentName || item.finderName} (${item.studentId || 'No ID'})</p>
                     <p><strong>Course & Section:</strong> ${item.courseSection || 'N/A'}</p>
+                    <p><strong>Sex:</strong> ${item.sex || 'N/A'}</p>
                     <p><strong>Contact Email:</strong> ${item.contactInfo || 'N/A'}</p>
                     <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
                     <p><strong>Category:</strong> ${item.category || 'N/A'}</p>
@@ -781,6 +782,7 @@ function reviewMatch(matchId, lostId, foundId) {
                     <p><strong>Ref ID:</strong> <span style="color: #8c1515; font-weight: bold;">${lostItem.lostId}</span></p>
                     <p><strong>Student:</strong> ${lostItem.studentName || 'Unknown'} (${lostItem.studentId || 'No ID'})</p>
                     <p><strong>Course:</strong> ${lostItem.courseSection || 'N/A'}</p>
+                    <p><strong>Sex:</strong> ${lostItem.sex || 'N/A'}</p>
                     <p><strong>Category:</strong> ${lostItem.category || 'N/A'}</p>
                     <p><strong>Type:</strong> ${info.type}</p>
                     <p><strong>Brand/Model:</strong> ${lostItem.brand || 'N/A'} ${lostItem.model ? '- ' + lostItem.model : ''}</p>
@@ -804,6 +806,7 @@ function reviewMatch(matchId, lostId, foundId) {
                     <p><strong>Ref ID:</strong> <span style="color: #10b981; font-weight: bold;">${foundItem.foundId}</span></p>
                     <p><strong>Finder:</strong> ${foundItem.finderName || 'Unknown'} (${foundItem.studentId || 'No ID'})</p>
                     <p><strong>Course:</strong> ${foundItem.courseSection || 'N/A'}</p>
+                    <p><strong>Sex:</strong> ${foundItem.sex || 'N/A'}</p>
                     <p><strong>Category:</strong> ${foundItem.category || 'N/A'}</p>
                     <p><strong>Type:</strong> ${info.type}</p>
                     <p><strong>Brand/Model:</strong> ${foundItem.brand || 'N/A'} ${foundItem.model ? '- ' + foundItem.model : ''}</p>
@@ -1171,6 +1174,7 @@ async function executeQuickExport() {
                 "Name": item.studentName || 'Unknown',
                 "Section": item.courseSection || 'N/A',
                 "Student Number": item.studentId || 'N/A',
+                "Sex": item.sex || 'N/A',
                 "Purpose": "Lost Item Ticket",
                 "Date Submitted": parseSpringDate(item.dateSubmitted || item.dateLost),
                 "Export Date": exportDate 
@@ -1181,6 +1185,7 @@ async function executeQuickExport() {
                 "Name": item.finderName || 'Unknown',
                 "Section": item.courseSection || 'N/A',
                 "Student Number": item.studentId || 'N/A',
+                "Sex": item.sex || 'N/A',
                 "Purpose": "Found Item Ticket",
                 "Date Submitted": parseSpringDate(item.dateSubmitted || item.dateFound),
                 "Export Date": exportDate 
@@ -1191,7 +1196,7 @@ async function executeQuickExport() {
 
         let worksheet = XLSX.utils.json_to_sheet(combinedData);
         let workbook = XLSX.utils.book_new();
-        worksheet['!cols'] = [{ wch: 25 }, { wch: 15 }, { wch: 20 }, { wch: 20 }, { wch: 25 }, { wch: 20 }];
+        worksheet['!cols'] = [{ wch: 25 }, { wch: 15 }, { wch: 20 }, { wch: 12 }, { wch: 20 }, { wch: 25 }, { wch: 20 }];
         XLSX.utils.book_append_sheet(workbook, worksheet, "All OSAD Tickets");
         XLSX.writeFile(workbook, "OSAD_General_Tickets.xlsx");
         hideLoading();
