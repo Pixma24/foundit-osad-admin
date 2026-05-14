@@ -262,39 +262,86 @@ function registerAccount() {
     }).catch(error => showCustomAlert("An error occurred during registration."));
 }
 
+let isAdminLoginSubmitting = false;
+
+function setAdminLoginLoading(isLoading, message = "Logging in...") {
+    const overlay = document.getElementById("adminLoginLoadingOverlay");
+    const loginBtn = document.getElementById("adminLoginBtn");
+    const loadingTitle = overlay ? overlay.querySelector("h3") : null;
+
+    if (loadingTitle) loadingTitle.textContent = message;
+
+    if (overlay) {
+        overlay.classList.toggle("active", isLoading);
+        overlay.setAttribute("aria-hidden", isLoading ? "false" : "true");
+    }
+
+    if (loginBtn) {
+        loginBtn.disabled = isLoading;
+        loginBtn.textContent = isLoading ? "LOGGING IN..." : "LOG IN";
+    }
+}
+
 function attemptLogin() {
-    const emailInput = document.getElementById("email").value;
+    if (isAdminLoginSubmitting) return;
+
+    const emailInput = document.getElementById("email").value.trim();
     const passInput = document.getElementById("password").value;
     const rememberMe = document.getElementById("remember") ? document.getElementById("remember").checked : false;
+    const errorMsg = document.getElementById("errorMsg");
+
+    if (errorMsg) errorMsg.style.display = "none";
+
+    if (!emailInput || !passInput) {
+        if (errorMsg) {
+            errorMsg.innerText = "Please enter your email and password.";
+            errorMsg.style.display = "block";
+        }
+        return;
+    }
+
+    isAdminLoginSubmitting = true;
+    setAdminLoginLoading(true);
 
     // Send credentials securely in the body, NOT the URL
     fetch(`${API_BASE}/api/items/admin/login`, {
-        method: 'POST', 
-        headers: { 
+        method: 'POST',
+        headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ username: emailInput, password: passInput })
     })
-    .then(res => res.text()) 
+    .then(res => res.text())
     .then(result => {
         if (result.startsWith("Success")) {
             let adminName = result.replace("Success", "").replace(",", "").replace("|", "").trim() || "Admin";
-            
+
             const storage = rememberMe ? localStorage : sessionStorage;
-            
+
             // Store a token identifier instead of a true/false boolean.
             // When you upgrade the backend to generate real JWTs, save that string here.
-            storage.setItem("foundit_admin_token", "active_session_token"); 
-            storage.setItem("foundit_admin_name", adminName); 
-            
-            window.location.href = "admin-dashboard.html"; 
+            storage.setItem("foundit_admin_token", "active_session_token");
+            storage.setItem("foundit_admin_name", adminName);
+
+            setAdminLoginLoading(true, "Login successful...");
+            window.location.href = "admin-dashboard.html";
         } else {
-            document.getElementById("errorMsg").style.display = "block";
+            if (errorMsg) {
+                errorMsg.innerText = "Incorrect email or password!";
+                errorMsg.style.display = "block";
+            }
+            isAdminLoginSubmitting = false;
+            setAdminLoginLoading(false);
         }
     })
     .catch(err => {
         console.error("Login error:", err);
-        document.getElementById("errorMsg").style.display = "block";
+        if (errorMsg) {
+            errorMsg.innerText = "Login failed. Please check your connection and try again.";
+            errorMsg.style.display = "block";
+        }
+        isAdminLoginSubmitting = false;
+        setAdminLoginLoading(false);
     });
 }
 
@@ -744,7 +791,6 @@ function viewDetails(itemId) {
                     ${generateCarouselHTML(photoPath, itemId)}
                     <p><strong>Student:</strong> ${item.studentName || item.finderName} (${item.studentId || 'No ID'})</p>
                     <p><strong>Course & Section:</strong> ${item.courseSection || 'N/A'}</p>
-                    <p><strong>Sex:</strong> ${item.sex || 'N/A'}</p>
                     <p><strong>Contact Email:</strong> ${item.contactInfo || 'N/A'}</p>
                     <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
                     <p><strong>Category:</strong> ${item.category || 'N/A'}</p>
@@ -782,7 +828,6 @@ function reviewMatch(matchId, lostId, foundId) {
                     <p><strong>Ref ID:</strong> <span style="color: #8c1515; font-weight: bold;">${lostItem.lostId}</span></p>
                     <p><strong>Student:</strong> ${lostItem.studentName || 'Unknown'} (${lostItem.studentId || 'No ID'})</p>
                     <p><strong>Course:</strong> ${lostItem.courseSection || 'N/A'}</p>
-                    <p><strong>Sex:</strong> ${lostItem.sex || 'N/A'}</p>
                     <p><strong>Category:</strong> ${lostItem.category || 'N/A'}</p>
                     <p><strong>Type:</strong> ${info.type}</p>
                     <p><strong>Brand/Model:</strong> ${lostItem.brand || 'N/A'} ${lostItem.model ? '- ' + lostItem.model : ''}</p>
@@ -806,7 +851,6 @@ function reviewMatch(matchId, lostId, foundId) {
                     <p><strong>Ref ID:</strong> <span style="color: #10b981; font-weight: bold;">${foundItem.foundId}</span></p>
                     <p><strong>Finder:</strong> ${foundItem.finderName || 'Unknown'} (${foundItem.studentId || 'No ID'})</p>
                     <p><strong>Course:</strong> ${foundItem.courseSection || 'N/A'}</p>
-                    <p><strong>Sex:</strong> ${foundItem.sex || 'N/A'}</p>
                     <p><strong>Category:</strong> ${foundItem.category || 'N/A'}</p>
                     <p><strong>Type:</strong> ${info.type}</p>
                     <p><strong>Brand/Model:</strong> ${foundItem.brand || 'N/A'} ${foundItem.model ? '- ' + foundItem.model : ''}</p>
@@ -1174,7 +1218,6 @@ async function executeQuickExport() {
                 "Name": item.studentName || 'Unknown',
                 "Section": item.courseSection || 'N/A',
                 "Student Number": item.studentId || 'N/A',
-                "Sex": item.sex || 'N/A',
                 "Purpose": "Lost Item Ticket",
                 "Date Submitted": parseSpringDate(item.dateSubmitted || item.dateLost),
                 "Export Date": exportDate 
@@ -1185,7 +1228,6 @@ async function executeQuickExport() {
                 "Name": item.finderName || 'Unknown',
                 "Section": item.courseSection || 'N/A',
                 "Student Number": item.studentId || 'N/A',
-                "Sex": item.sex || 'N/A',
                 "Purpose": "Found Item Ticket",
                 "Date Submitted": parseSpringDate(item.dateSubmitted || item.dateFound),
                 "Export Date": exportDate 
@@ -1196,7 +1238,7 @@ async function executeQuickExport() {
 
         let worksheet = XLSX.utils.json_to_sheet(combinedData);
         let workbook = XLSX.utils.book_new();
-        worksheet['!cols'] = [{ wch: 25 }, { wch: 15 }, { wch: 20 }, { wch: 12 }, { wch: 20 }, { wch: 25 }, { wch: 20 }];
+        worksheet['!cols'] = [{ wch: 25 }, { wch: 15 }, { wch: 20 }, { wch: 20 }, { wch: 25 }, { wch: 20 }];
         XLSX.utils.book_append_sheet(workbook, worksheet, "All OSAD Tickets");
         XLSX.writeFile(workbook, "OSAD_General_Tickets.xlsx");
         hideLoading();
@@ -1206,3 +1248,13 @@ async function executeQuickExport() {
         showCustomAlert("An error occurred while generating the Excel file.");
     }
 }
+// Allow Enter key to submit the admin login form without refreshing the page.
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            attemptLogin();
+        });
+    }
+});
